@@ -1,47 +1,49 @@
-import java.util.Scanner;
+ import java.util.Scanner;
+
 
 public class Main
 {
 
-    // Method to convert binary to hex
-    static void convert(StringBuilder val)
+    static void convert(StringBuilder str)
     {
-        // Reversing the characters
-        val =val.reverse();
-        int size =val.length();
-
-        // New StringBuilder to hold the result
-        StringBuilder val2 = new StringBuilder();
-        int res=0, num; double po=0;
-
-        for (int i=0; i<size; i++)
+        str=str.reverse();
+        int size= str.length();
+        StringBuilder val= new StringBuilder();
+        int result=0, count=0;
+        for (int i=0; i<size;i ++)
         {
-            if(po<4 )
-            {
-            num =val.charAt(i)-'0';
-            res +=num*(int)Math.pow(2,po);
-            po +=1;
-            }
 
-         else {
-                val2 = val2.append(res); po=0;res=0; i-=1;
+          if (count==3  )
+          {
+              val.append(result);
+              count=0; result=0;
+          }
 
-              }
-         if (i==size-1) val2 = val2.append(res);
-            }
-        System.out.println(val2.reverse());
-        }
+          int num= (char)str.charAt(i)-'0';
+          int power=(int)Math.pow(2,count);
 
+         result =result+num *power;
+         count+=1;
+         if (i==size-1) val.append(result);
+
+    }
+        System.out.println(val.reverse() );
+    }
 
 
     public static void main(String[] args)
 
     {
-
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your number: ");
-        StringBuilder val  =new StringBuilder(sc.nextLine());
+        StringBuilder str  =new StringBuilder(sc.nextLine());
+        sc.close();
 
-        convert(val);
+        convert(str);
+
+
+
+
+
 
     }}
